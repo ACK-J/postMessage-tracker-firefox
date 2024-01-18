@@ -1,3 +1,5 @@
+[<img src="https://blog.mozilla.org/addons/files/2020/04/get-the-addon-fx-apr-2020.svg" alt="for Firefox" height="60px">](https://addons.mozilla.org/en-US/firefox/addon/postmessage-tracker-f/)
+
 # postMessage-tracker-firefox
 
 This is a super simple port of the extension to make it work nicely with Firefox. All credit goes to Frans Rosén.
