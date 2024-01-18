@@ -216,7 +216,7 @@ injectedJS = '(' + injectedJS.toString() + ')'+
              '(History.prototype.pushState, Window.prototype.addEventListener, MessagePort.prototype.addEventListener)';
 
 document.addEventListener('postMessageTracker', function(event) {
-	chrome.runtime.sendMessage(event.detail);
+	browser.runtime.sendMessage(event.detail);
 });
 
 //we use this to separate fragment changes with location changes
