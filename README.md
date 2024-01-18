@@ -1,10 +1,12 @@
-# postMessage-tracker
+# postMessage-tracker-firefox
 
-Made by [Frans Rosén](https://twitter.com/fransrosen). Presented during the ["Attacking modern web technologies"-talk](https://www.youtube.com/watch?v=oJCCOnF25JU) ([Slides](https://speakerdeck.com/fransrosen/owasp-appseceu-2018-attacking-modern-web-technologies)) at OWASP AppSec Europe back in 2018, but finally released in May 2020.
+This is a super simple port of the extension to make it work nicely with Firefox. All credit goes to Frans Rosén.
+
+Made by [Frans Rosén](https://twitter.com/fransrosen). Presented during the ["Attacking modern web technologies"-talk](https://www.youtube.com/watch?v=oJCCOnF25JU) ([Slides](https://speakerdeck.com/fransrosen/owasp-appseceu-2018-attacking-modern-web-technologies)) at OWASP AppSec Europe back in 2018, but finally released in May 2020. 
 
 <img src="https://github.com/fransr/postMessage-tracker/raw/docs-images/images/listener-uber.png" width="500" />
 
-This Chrome extension monitors postMessage-listeners by showing you an indicator about the amount of listeners in the current window.
+This Firefox extension monitors postMessage-listeners by showing you an indicator about the amount of listeners in the current window.
 
 It supports tracking listeners in all subframes of the window. It also keeps track of short-lived listeners and listeners enabled upon interactions. You can also log the listener functions and locations to look them through them at a later stage by using the Log URL-option in the extension. This enables you to find hidden listeners that are only enabled for a short time inside an iframe.
 
@@ -36,11 +38,11 @@ It also supports tracking communication happening between different windows, usi
 
 <img src="https://github.com/fransr/postMessage-tracker/raw/docs-images/images/after-jquery.png" width="200" />
 
-* Allows you to set a Log URL inside the extension options to allow you to log all information about each listener to an endpoint by submitting the listener and the function (to be able to look through all listeners later). You can find the options in the Extension Options when clicking the extension in `chrome://extensions`-page:
+* Allows you to set a Log URL inside the extension options to allow you to log all information about each listener to an endpoint by submitting the listener and the function (to be able to look through all listeners later). You can find the options in the Extension Options when right-clicking the extension -> Manage Extension -> Preferences :
 
 <img src="https://github.com/fransr/postMessage-tracker/raw/docs-images/images/options.png" width="300" />
 
-* Supports anonymous functions. Chrome does not support to stringify an anonymous function, in the cases of anonymous functions, you will see the `bound`-string as the listener:
+* Supports anonymous functions. Chrome (Unsure about Firefox) does not support to stringify an anonymous function, in the cases of anonymous functions, you will see the `bound`-string as the listener:
 
 <img src="https://github.com/fransr/postMessage-tracker/raw/docs-images/images/anonymous.png" width="300" />
 
