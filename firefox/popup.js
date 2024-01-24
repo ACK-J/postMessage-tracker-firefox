@@ -15,6 +15,11 @@ function loaded() {
 
 document.addEventListener('DOMContentLoaded', loaded);
 
+function highlightString(text) {
+    // Highlight and make the matched string bold
+    return '<b style="color: red;">' + text + '</b>';
+}
+
 function listListeners(listeners) {
     var x = document.getElementById('x');
     x.parentElement.removeChild(x);
@@ -42,7 +47,12 @@ function listListeners(listeners) {
         el.appendChild(sel);
 
         pel = document.createElement('pre');
-        pel.innerText = listener.listener;
+        // Highlight and make the matched strings bold
+        var listenerText = listener.listener.replace(/(eval\()|(\.indexOf\()|(\.startsWith\()|(\.endsWith\()|(location\.href)|(\.url)|(\.source)|(\"\*\")|(\'\*\')|(\.search\()|(document\.write)|(\.innerHTML)|(\.includes\()|(\.match\()|(window\.origin)/g,
+            function(match) {
+                return highlightString(match);
+            });
+        pel.innerHTML = listenerText;
         el.appendChild(pel);
 
         x.appendChild(el);
