@@ -2,7 +2,7 @@
 
 # postMessage-tracker-firefox
 
-This is a super simple port of the extension to make it work nicely with Firefox. All credit goes to Frans Rosén.
+This is a super simple port of the extension with added potentially vulnerable function highlighting. All credit goes to Frans Rosén.
 
 Made by [Frans Rosén](https://twitter.com/fransrosen). Presented during the ["Attacking modern web technologies"-talk](https://www.youtube.com/watch?v=oJCCOnF25JU) ([Slides](https://speakerdeck.com/fransrosen/owasp-appseceu-2018-attacking-modern-web-technologies)) at OWASP AppSec Europe back in 2018, but finally released in May 2020. 
 
