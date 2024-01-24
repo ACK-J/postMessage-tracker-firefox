@@ -15,6 +15,10 @@ function loaded() {
 
 document.addEventListener('DOMContentLoaded', loaded);
 
+function htmlEncode(text) {
+    return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
 function highlightString(text) {
     // Highlight and make the matched string bold
     return '<b style="color: red;">' + text + '</b>';
@@ -26,29 +30,29 @@ function listListeners(listeners) {
     x = document.createElement('ol');
     x.id = 'x';
     //console.log(listeners);
-    document.getElementById('h').innerText = listeners.length ? listeners[0].parent_url : '';
+    document.getElementById('h').textContent = listeners.length ? listeners[0].parent_url : '';
 
     for (var i = 0; i < listeners.length; i++) {
-        listener = listeners[i]
-        el = document.createElement('li');
+        var listener = listeners[i];
+        var el = document.createElement('li');
 
-        bel = document.createElement('b');
-        bel.innerText = listener.domain + ' ';
-        win = document.createElement('code');
-        win.innerText = ' ' + (listener.window ? listener.window + ' ' : '') + (listener.hops && listener.hops.length ? listener.hops : '');
+        var bel = document.createElement('b');
+        bel.innerHTML = htmlEncode(listener.domain) + ' ';
+        var win = document.createElement('code');
+        win.innerHTML = ' ' + (listener.window ? htmlEncode(listener.window) + ' ' : '') + (listener.hops && listener.hops.length ? htmlEncode(listener.hops) : '');
         el.appendChild(bel);
         el.appendChild(win);
 
-        sel = document.createElement('span');
-        if (listener.fullstack) sel.setAttribute('title', listener.fullstack.join("\n\n"));
-        seltxt = document.createTextNode(listener.stack);
+        var sel = document.createElement('span');
+        if (listener.fullstack) sel.setAttribute('title', htmlEncode(listener.fullstack.join("\n\n")));
+        var seltxt = document.createTextNode(htmlEncode(listener.stack));
 
         sel.appendChild(seltxt);
         el.appendChild(sel);
 
-        pel = document.createElement('pre');
+        var pel = document.createElement('pre');
         // Highlight and make the matched strings bold
-        var listenerText = listener.listener.replace(/(eval\()|(\.indexOf\()|(\.startsWith\()|(\.endsWith\()|(location\.href)|(\.url)|(\.source)|(\"\*\")|(\'\*\')|(\.search\()|(document\.write)|(\.innerHTML)|(\.includes\()|(\.match\()|(window\.origin)/g,
+        var listenerText = htmlEncode(listener.listener).replace(/(eval\()|(\.indexOf\()|(\.startsWith\()|(\.endsWith\()|(location\.href)|(\.url)|(\.source)|(\"\*\")|(\'\*\')|(\.search\()|(document\.write)|(\.innerHTML)|(\.includes\()|(\.match\()|(window\.origin)/g,
             function(match) {
                 return highlightString(match);
             });
