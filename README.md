@@ -6,7 +6,7 @@ This is a super simple port of the extension to make it work nicely with Firefox
 
 Made by [Frans Rosén](https://twitter.com/fransrosen). Presented during the ["Attacking modern web technologies"-talk](https://www.youtube.com/watch?v=oJCCOnF25JU) ([Slides](https://speakerdeck.com/fransrosen/owasp-appseceu-2018-attacking-modern-web-technologies)) at OWASP AppSec Europe back in 2018, but finally released in May 2020. 
 
-<img src="https://github.com/fransr/postMessage-tracker/raw/docs-images/images/listener-uber.png" width="500" />
+![image](https://github.com/ACK-J/postMessage-tracker-firefox/assets/60232273/9117457c-52e4-4c25-89f6-5a3e8c06b96e)
 
 This Firefox extension monitors postMessage-listeners by showing you an indicator about the amount of listeners in the current window.
 
