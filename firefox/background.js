@@ -37,6 +37,8 @@ function logListener(data) {
 }
 
 browser.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+    if(msg.stack.includes("@moz-extension")) return;
+    
     console.log('message from cs', msg);
     tabId = sender.tab.id;
     if (msg.listener) {
