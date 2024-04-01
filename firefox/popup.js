@@ -2,6 +2,63 @@ var port = browser.runtime.connect({
     name: "Sample Communication"
 });
 
+const highlightedWords = [
+	".add(",
+	".after(",
+	".ajax(",
+	".animate(",
+	".append(",
+	".assign",
+	".attribute",
+	".backgroundImage",
+	".before(",
+	".constructor(",
+	".cssText",
+	".eval(",
+	".execCommand(",
+	".execScript(",
+	".has(",
+	".hostname",
+	".html(",
+	".index(",
+    ".indexOf(",
+	".init(",
+	".innerText",
+	".innerHTML",
+	".insertAdjacentHTML",
+	".insertAfter(",
+	".insertBefore(",
+	".open(",
+	".onevent(",
+	".outerText",
+	".outerHtml",
+	".parseHTML(",
+	".pathname",
+	".prepend(",
+	".protocol",
+	".replace",
+	".replaceAll(",
+	".replaceWith(",
+	".send(",
+	".setAttribute(",
+	".setImmediate(",
+	".setInterval(",
+	".setTimeout(",
+	".wrap(",
+	".wrapAll(",
+	".wrapInner(",
+	".write(",
+	".writeln(",
+    ".startsWith(",
+    ".endsWith(",
+    ".location.href",
+    ".location.source",
+    ".location.url",
+    ".window.origin",
+    ".match(",
+    ".origin",
+];
+
 function loaded() {
     port.postMessage("get-stuff");
     port.onMessage.addListener(function(msg) {
@@ -30,6 +87,7 @@ function listListeners(listeners) {
     x = document.createElement('ol');
     x.id = 'x';
     //console.log(listeners);
+
     document.getElementById('h').textContent = listeners.length ? listeners[0].parent_url : '';
 
     for (var i = 0; i < listeners.length; i++) {
@@ -52,7 +110,9 @@ function listListeners(listeners) {
 
         var pel = document.createElement('pre');
         // Highlight and make the matched strings bold
-        var listenerText = htmlEncode(listener.listener).replace(/(eval\()|(\.indexOf\()|(\.startsWith\()|(\.endsWith\()|(location\.href)|(\.url)|(\.source)|(\"\*\")|(\'\*\')|(\.search\()|(document\.write\()|(\.innerHTML\()|(\.includes\()|(\.match\()|(\.origin)|(window\.origin)/g,
+
+        const regexString = highlightedWords.map(word => word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|');
+        var listenerText = htmlEncode(listener.listener).replace(new RegExp(regexString),
             function(match) {
                 return highlightString(match);
             });
